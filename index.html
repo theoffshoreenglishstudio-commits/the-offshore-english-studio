@@ -1,193 +1,552 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="The Offshore English Studio — English for professionals, students & offshore careers. Online English classes plus Commercial Diver CV & document PDF packs." />
   <title>The Offshore English Studio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="The Offshore English Studio — English for professionals, students & offshore careers.">
 
   <style>
+    :root{
+      --bg:#f6f8ff;
+      --bg2:#ffffff;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --line:#e2e8f0;
+      --accent:#0f2a5f;
+      --accent2:#16a34a;
+      --soft1: rgba(15,42,95,.10);
+      --soft2: rgba(22,163,74,.10);
+      --shadow: 0 18px 55px rgba(2,6,23,.10);
+      --radius:18px;
+      --max:1120px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      background:#f6f8ff;
-      color:#0f172a;
-      line-height:1.6;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(900px 700px at 15% 0%, var(--soft1), transparent 60%),
+        radial-gradient(850px 650px at 85% 10%, var(--soft2), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      line-height:1.55;
     }
 
-    header{
-      padding:20px;
-      background:white;
-      border-bottom:1px solid #e2e8f0;
-      position:sticky;
-      top:0;
-    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:22px 18px 80px;}
 
-    header strong{
-      font-size:20px;
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(150%) blur(10px);
+      background: rgba(246,248,255,.75);
+      border-bottom:1px solid rgba(226,232,240,.9);
     }
-
-    .container{
-      max-width:1100px;
-      margin:auto;
-      padding:30px 20px 80px;
+    .nav-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:12px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
     }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      text-decoration:none;
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+    .dot{
+      width:12px; height:12px; border-radius:999px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      box-shadow:0 0 0 6px rgba(15,42,95,.10);
+      flex:0 0 auto;
+    }
+    .links{
+      display:flex; gap:14px; align-items:center;
+      flex-wrap:wrap;
+    }
+    .links a{
+      opacity:.85; text-decoration:none; font-size:14px; color:var(--muted);
+      padding:6px 8px; border-radius:10px;
+    }
+    .links a:hover{opacity:1; color:var(--text); background:rgba(255,255,255,.75)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 10px 25px rgba(2,6,23,.08);
+      text-decoration:none;
+      font-weight:900;
+      font-size:14px;
+      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(15,42,95,.28);
+      box-shadow: 0 14px 32px rgba(2,6,23,.10);
+    }
+    .btn.primary{
+      border-color: rgba(15,42,95,.24);
+      background: linear-gradient(135deg, rgba(15,42,95,.10), rgba(22,163,74,.08));
+    }
+    .btn.small{padding:10px 12px; font-size:13px; border-radius:12px}
 
-    .hero img{
+    .hero{padding:26px 0 10px}
+    .hero-card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .hero-card img{
       width:100%;
-      border-radius:18px;
-      border:1px solid #e2e8f0;
-      box-shadow:0 18px 55px rgba(0,0,0,.12);
+      display:block;
+      border-bottom:1px solid var(--line);
     }
-
+    .hero-content{padding:22px}
     h1{
-      margin-top:30px;
-      font-size:36px;
+      margin:0 0 10px;
+      font-size:40px;
+      letter-spacing:-.6px;
+      line-height:1.1;
     }
-
+    .tagline{
+      font-weight:900;
+      margin:0 0 10px;
+    }
+    .sub{color:var(--muted); margin:0}
+    .pill-row{display:flex; flex-wrap:wrap; gap:10px; margin:14px 0 14px}
     .pill{
-      display:inline-block;
-      margin:8px 8px 0 0;
-      padding:8px 14px;
-      border-radius:999px;
-      border:1px solid #e2e8f0;
+      padding:8px 10px; border-radius:999px;
+      border:1px solid var(--line);
+      color:var(--muted);
       font-size:13px;
-      color:#475569;
-      background:white;
+      background: rgba(248,250,252,.9);
+    }
+    .cta-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+
+    .section{padding:34px 0}
+    .section h2{font-size:26px; margin:0 0 10px; letter-spacing:-.2px}
+    .section p{margin:0; color:var(--muted)}
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      margin-top:14px;
     }
 
-    section{
-      margin-top:60px;
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+      padding:18px;
+    }
+
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:13px;
+      color: #0f172a;
+      border:1px solid rgba(15,42,95,.18);
+      background: rgba(15,42,95,.06);
+      border-radius:999px;
+      padding:7px 10px;
+      font-weight:900;
+    }
+
+    ul{margin:10px 0 0 18px; color:var(--muted)}
+    li{margin:6px 0}
+
+    .note{
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px solid rgba(15,42,95,.20);
+      background: linear-gradient(135deg, rgba(15,42,95,.08), rgba(22,163,74,.06));
+      color: #0f172a;
+      margin-top:12px;
+      font-size:14px;
     }
 
     .quote{
-      background:white;
-      border:1px solid #e2e8f0;
+      margin-top:12px;
+      padding:16px;
       border-radius:16px;
-      padding:20px;
-      margin-top:20px;
+      border:1px solid var(--line);
+      background: rgba(248,250,252,.85);
+      color: #0f172a;
     }
+    .quote p{margin:0 0 10px; color:#0f172a}
+    .quote footer{color:var(--muted); font-size:13px}
 
     details summary{
+      list-style:none;
       cursor:pointer;
-      font-weight:700;
       margin-top:10px;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#fff;
+      color:var(--muted);
+      font-weight:900;
+      font-size:13px;
+    }
+    details summary::-webkit-details-marker{display:none}
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-top:12px;
+    }
+    .step{
+      padding:14px;
+      border:1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(248,250,252,.85);
+    }
+    .step strong{display:block; margin-bottom:6px}
+
+    .split{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:16px;
+      margin-top:14px;
+      align-items:start;
     }
 
-    .qr-grid{
+    .contact-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
-      gap:20px;
-      margin-top:30px;
+      gap:14px;
+      margin-top:12px;
     }
-
-    .qr-card{
-      background:white;
-      border:1px solid #e2e8f0;
+    .qr{
+      padding:14px;
       border-radius:16px;
-      padding:20px;
-      text-align:center;
+      border:1px solid var(--line);
+      background: rgba(248,250,252,.85);
+      display:flex; flex-direction:column; gap:10px;
     }
-
-    .qr-card img{
+    .qr img{
       width:100%;
-      max-width:260px;
-      margin-top:10px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: #fff;
+      padding:10px;
+      max-height:260px;
+      object-fit:contain;
     }
+    .row{display:flex; align-items:center; justify-content:space-between; gap:10px}
+    .muted{color:var(--muted)}
 
-    footer{
-      margin-top:80px;
-      padding-top:20px;
-      border-top:1px solid #e2e8f0;
-      color:#64748b;
+    .footer{
+      margin-top:24px;
+      padding-top:18px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
       font-size:13px;
       display:flex;
-      justify-content:space-between;
       flex-wrap:wrap;
       gap:10px;
+      justify-content:space-between;
     }
 
-    @media(max-width:800px){
-      h1{font-size:30px}
-      .qr-grid{grid-template-columns:1fr}
+    @media (max-width: 900px){
+      h1{font-size:34px}
+      .steps{grid-template-columns:1fr}
+      .split{grid-template-columns:1fr}
+    }
+    @media (max-width: 720px){
+      .links{display:none}
+      .grid-2{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      .wrap{padding-bottom:50px}
     }
   </style>
 </head>
 
 <body>
+  <div class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top">
+        <span class="dot" aria-hidden="true"></span>
+        <span>The Offshore English Studio</span>
+      </a>
 
-<header>
-  <strong>The Offshore English Studio</strong>
-</header>
+      <div class="links" aria-label="Site sections">
+        <a href="#services">Services</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#how">How it works</a>
+        <a href="#contact">Contact</a>
+      </div>
 
-<div class="container">
-
-  <section class="hero">
-    <img src="the-offshore-english-studio.png" alt="The Offshore English Studio illustration">
-  </section>
-
-  <h1>English for professionals, students & offshore careers</h1>
-
-  <p>
-    Online English classes for adults and university students across Asia, Egypt and the Middle East —
-    plus professional CV and document services for commercial divers.
-  </p>
-
-  <span class="pill">Bangkok (GMT+7)</span>
-  <span class="pill">Flexible time zones</span>
-  <span class="pill">Offshore & professional focus</span>
-
-  <section>
-    <h2>Student feedback</h2>
-
-    <div class="quote">
-      “Shannon adapts every lesson to my goals. Classes are relaxed and practical, and my listening and speaking confidence improved significantly.
-      I’ve studied with her for over a year and continue because I see real results.”
-      <br><strong>— Wichit T., Scientist</strong>
+      <a class="btn small primary" href="#contact">Book / Enquire</a>
     </div>
+  </div>
 
-    <details>
-      <summary>View Thai version</summary>
-      <div class="quote">
-        ฉันมีโอกาสได้เรียนภาษาอังกฤษกับชานอน และรู้สึกประทับใจกับการสอนของเธอมาก
-        ชานอนสามารถปรับเนื้อหาและวิธีการสอนให้เหมาะกับความต้องการและเป้าหมายของผู้เรียน
-        ทำให้การเรียนยืดหยุ่นและตรงจุด บรรยากาศการเรียนออนไลน์เป็นกันเอง สนุก ไม่เครียด
-        ทำให้ฉันกล้าใช้ภาษาอังกฤษมากขึ้น และเห็นผลลัพธ์ชัดเจน
-        <br><strong>— Wichit T., Scientist</strong>
+  <main id="top" class="wrap">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-card">
+        <!-- Your sketch image -->
+        <img src="the-offshore-english-studio.png" alt="The Offshore English Studio classroom sketch illustration" />
+        <div class="hero-content">
+          <h1>English for professionals, students & offshore careers.</h1>
+          <p class="tagline">Practical, confidence-building online lessons — plus Commercial Diver CV &amp; document PDF packs.</p>
+          <p class="sub">
+            Based in Bangkok (GMT+7) and open to all time zones. I work with adults and university students across Asia, Egypt &amp; the Middle East.
+          </p>
+
+          <div class="pill-row">
+            <span class="pill">Bangkok (GMT+7)</span>
+            <span class="pill">Flexible time zones</span>
+            <span class="pill">Professional + academic English</span>
+            <span class="pill">Offshore-focused CV support</span>
+          </div>
+
+          <div class="cta-row">
+            <a class="btn primary" href="mailto:theoffshoreenglishstudio@gmail.com
+?subject=Enquiry%20-%20The%20Offshore%20English%20Studio&body=Hi%20the-offshore-english-studio%2C%20I%E2%80%99d%20like%20to%20enquire%20about%20(English%20lessons%20/%20Diver%20CV%20pack).%0A%0AMy%20goal%3A%20____%0AMy%20time%20zone%3A%20____%0AAvailability%3A%20____%0A%0AThanks!">
+              Email to book / enquire
+            </a>
+            <a class="btn" href="#contact">Message on LINE / WhatsApp</a>
+          </div>
+
+          <div class="note">
+            <strong>Payment methods (upfront):</strong> PayPal • Thai bank transfer • South African bank transfer (international).
+          </div>
+        </div>
       </div>
-    </details>
-  </section>
+    </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
+    <!-- SERVICES -->
+    <section id="services" class="section">
+      <h2>Services</h2>
+      <p>Choose what you need right now — we can also combine services.</p>
 
-    <p>Email:
-      <a href="mailto:shannondenisejvv@gmail.com">shannondenisejvv@gmail.com</a>
-    </p>
+      <div class="grid-2">
+        <div class="card">
+          <div class="badge">🗣️ English Classes</div>
+          <h3 style="margin:10px 0 8px;">Adults &amp; university students</h3>
+          <p class="muted" style="margin:0;">
+            Practical lessons built around your goals (study, work, interviews, presentations, everyday confidence).
+          </p>
+          <ul>
+            <li>Speaking confidence + pronunciation support</li>
+            <li>Listening skills through guided conversation</li>
+            <li>Academic English support (uni tasks, writing, presentations)</li>
+            <li>Professional English (emails, meetings, interviews)</li>
+            <li>Personalised feedback and clear next steps</li>
+          </ul>
+          <div class="cta-row" style="margin-top:14px;">
+            <a class="btn primary" href="#contact">Enquire about lessons</a>
+            <a class="btn" href="mailto:theoffshoreenglishstudio@gmail.com?subject=English%20Lessons%20Enquiry%20-%20The%20Offshore%20English%20Studio">Email me</a>
+          </div>
+        </div>
 
-    <p>
-      Payment methods: PayPal • Thai bank transfer • South African bank transfer
-    </p>
-
-    <div class="qr-grid">
-      <div class="qr-card">
-        <strong>LINE</strong>
-        <img src="line-qr.jpg" alt="LINE QR code">
+        <div class="card">
+          <div class="badge">📄 Commercial Diver CV &amp; PDF Pack</div>
+          <h3 style="margin:10px 0 8px;">One-page CV + certificates compiled</h3>
+          <p class="muted" style="margin:0;">
+            I update your CV with new experience after diving courses and deliver a single, clean PDF: CV first, then all certs attached.
+          </p>
+          <ul>
+            <li>1-page CV format (clean, professional)</li>
+            <li>Experience updated and structured clearly</li>
+            <li>All certificates included after the CV in one PDF</li>
+            <li>Designed to be easy to send to employers</li>
+          </ul>
+          <div class="cta-row" style="margin-top:14px;">
+            <a class="btn primary" href="mailto:theoffshoreenglishstudio@gmail.com?subject=Commercial%20Diver%20CV%20Pack%20Enquiry%20-%20The%20Offshore%20English%20Studio&body=Hi%20the-offshore-english-studio%2C%20I%E2%80%99d%20like%20help%20updating%20my%20Commercial%20Diver%20CV%20and%20creating%20the%20PDF%20pack.%0A%0AWhat%20I%20have%3A%20____%0ANew%20experience%20to%20add%3A%20____%0ATurnaround%20needed%20by%3A%20____%0A%0AThanks!">Request a CV pack</a>
+            <a class="btn" href="#contact">Message me</a>
+          </div>
+        </div>
       </div>
 
-      <div class="qr-card">
-        <strong>WhatsApp</strong>
-        <img src="whatsapp-qr.png" alt="WhatsApp QR code">
+      <div class="card" style="margin-top:16px;">
+        <h3 style="margin:0 0 6px;">Payment methods</h3>
+        <p class="muted" style="margin:0;">Simple and flexible — pick what suits you.</p>
+        <div class="pill-row" style="margin-top:10px;">
+          <span class="pill">PayPal</span>
+          <span class="pill">Thai bank transfer</span>
+          <span class="pill">South African bank transfer (international)</span>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <span>© The Offshore English Studio</span>
-    <span>English • CV • Offshore careers</span>
-  </footer>
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="section">
+      <h2>Testimonials</h2>
+      <p>Real student feedback (English + Thai). You can add video testimonials here later.</p>
 
-</div>
+      <div class="grid-2" style="margin-top:14px;">
+        <div class="card">
+          <div class="badge">⭐ Written testimonial</div>
+          <div class="quote">
+            <p>
+              “Shannon adapts every lesson to my goals. Classes are relaxed and practical, and my listening and speaking confidence improved significantly.
+              I’ve studied with her for over a year and continue because I see real results.”
+            </p>
+            <footer>— Wichit T., Scientist</footer>
+          </div>
 
+          <details style="margin-top:12px;">
+            <summary>View Thai version</summary>
+            <div class="quote" style="margin-top:10px;">
+              <p>
+                ฉันมีโอกาสได้เรียนภาษาอังกฤษกับชานอน และรู้สึกประทับใจกับการสอนของเธอมาก ชานอนสามารถปรับเนื้อหาและวิธีการสอนให้เหมาะกับความต้องการและเป้าหมายของผู้เรียน
+                ทำให้การเรียนยืดหยุ่นและตรงจุด บรรยากาศการเรียนออนไลน์เป็นกันเอง สนุก ไม่เครียด และไม่น่าเบื่อ ทำให้ฉันรู้สึกผ่อนคลายและกล้าใช้ภาษาอังกฤษมากขึ้น
+                หลังจากเรียนกับชานอน ทักษะการฟังของฉันพัฒนาขึ้นอย่างชัดเจน และมั่นใจในการสื่อสารมากขึ้น ฉันเรียนกับชานอนมากกว่า 1 ปี และยังคงเรียนอยู่เพราะเห็นผลลัพธ์และประโยชน์จริง ๆ
+              </p>
+              <footer>— Wichit T., Scientist</footer>
+            </div>
+          </details>
+        </div>
+
+        <div class="card">
+          <div class="badge">🎥 Video testimonial</div>
+          <div class="note">
+            When you’re ready, you can embed your edited video here. (YouTube unlisted works great.)
+          </div>
+          <div class="quote" style="margin-top:12px;">
+            <p><strong>Placeholder:</strong> Video will appear here.</p>
+            <footer>— Student video</footer>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="section">
+      <h2>How it works</h2>
+      <p>Fast, simple, and focused on outcomes.</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="badge">🗣️ English Lessons</div>
+          <div class="steps">
+            <div class="step">
+              <strong>1) Tell me your goal</strong>
+              Share your level, your goal, and your time zone.
+            </div>
+            <div class="step">
+              <strong>2) Get a plan</strong>
+              I recommend the best lesson approach and schedule.
+            </div>
+            <div class="step">
+              <strong>3) Improve weekly</strong>
+              Structured lessons + practice + feedback = real confidence.
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="badge">📄 Diver CV &amp; PDF Pack</div>
+          <div class="steps">
+            <div class="step">
+              <strong>1) Send your info</strong>
+              CV, new experience, and certificate images/PDFs.
+            </div>
+            <div class="step">
+              <strong>2) I update + format</strong>
+              Clean one-page CV with your latest experience.
+            </div>
+            <div class="step">
+              <strong>3) Receive one PDF</strong>
+              CV first, then certificates — ready to send to employers.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <p>Message me on LINE or WhatsApp, or email to book.</p>
+
+      <div class="split">
+        <div class="card">
+          <div class="badge">📨 Fastest ways to reach me</div>
+
+          <div class="contact-grid">
+            <div class="qr">
+              <div class="row">
+                <strong>LINE</strong>
+                <span class="muted">Scan to chat</span>
+              </div>
+              <img src="line-qr.jpg" alt="LINE QR code" />
+              <div class="row">
+                <span class="muted">Works great in Asia</span>
+                <a class="btn small primary" href="mailto:theoffshoreenglishstudio@gmail.com?subject=LINE%20Enquiry%20-%20The%20Offshore%20English%20Studio">Email instead</a>
+              </div>
+            </div>
+
+            <div class="qr">
+              <div class="row">
+                <strong>WhatsApp</strong>
+                <span class="muted">Scan to chat</span>
+              </div>
+              <img src="whatsapp-qr.png" alt="WhatsApp QR code" />
+              <div class="row">
+                <span class="muted">Great for Middle East</span>
+                <a class="btn small primary" href="mailto:theoffshoreenglishstudio@gmail.com?subject=WhatsApp%20Enquiry%20-%20The%20Offshore%20English%20Studio">Email instead</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="note">
+            <strong>Email:</strong> <a href="mailto:theoffshoreenglishstudio@gmail.com">theoffshoreenglishstudio@gmail.com</a><br/>
+            <span class="muted">Based in Bangkok (GMT+7) • Open to all time zones</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="badge">✅ What to include in your message</div>
+          <div class="quote" style="margin-top:12px;">
+            <p class="muted" style="margin:0 0 10px;">Copy/paste this and fill in the blanks:</p>
+            <p style="margin:0; white-space:pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size:13px; color:#0f172a">
+Hi Shannon,
+I'm interested in: (English lessons / Diver CV pack)
+My current level / background:
+My goals:
+My time zone:
+My available days/times:
+            </p>
+          </div>
+
+          <div class="note">
+            <strong>Adding video later:</strong> When your clip is ready, upload it to YouTube (unlisted) and I’ll help you embed it here perfectly.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>© <span id="y"></span> The Offshore English Studio</span>
+        <span>English classes • CV &amp; document services</span>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
